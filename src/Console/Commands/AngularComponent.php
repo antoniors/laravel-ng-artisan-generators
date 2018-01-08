@@ -41,6 +41,10 @@ class AngularComponent extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        if (stripos($name, '/')) {
+            $paths = explode('/', $name);
+            $name = $paths[0];
+        }
         $studly_name = studly_case($name);
         $ng_component = str_replace('_', '-', $name);
 
